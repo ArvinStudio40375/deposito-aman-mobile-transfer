@@ -8,9 +8,12 @@ interface TransferFormProps {
 }
 
 const TransferForm = ({ onSubmit, onClose }: TransferFormProps) => {
+  const saldoDeposito = parseInt(localStorage.getItem('saldoDeposito') || '0');
+  const nominalOtomatis = `Rp ${saldoDeposito.toLocaleString('id-ID')},00,-`;
+
   const [formData, setFormData] = useState({
     noRekening: '',
-    nominal: '',
+    nominal: nominalOtomatis,
     namaBank: '',
     namaPemilik: ''
   });
@@ -34,12 +37,6 @@ const TransferForm = ({ onSubmit, onClose }: TransferFormProps) => {
     'Bank BTPN',
     'Bank Sinarmas'
   ];
-
-  const handleNominalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, '');
-    const formatted = value ? `Rp ${parseInt(value).toLocaleString('id-ID')},00,-` : '';
-    setFormData({ ...formData, nominal: formatted });
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,11 +83,13 @@ const TransferForm = ({ onSubmit, onClose }: TransferFormProps) => {
             <input
               type="text"
               value={formData.nominal}
-              onChange={handleNominalChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Rp 0,00,-"
-              required
+              readOnly
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 cursor-not-allowed"
+              placeholder="Nominal otomatis sesuai saldo deposito"
             />
+            <p className="text-sm text-gray-500 mt-1">
+              *Nominal otomatis sesuai total saldo deposito
+            </p>
           </div>
 
           <div className="relative">

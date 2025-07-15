@@ -1,6 +1,5 @@
 
 import { useEffect } from 'react';
-import { Building2 } from 'lucide-react';
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -29,7 +28,11 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
         {/* Logo Animation */}
         <div className="mb-8 animate-fade-in">
           <div className="inline-block p-6 bg-white/10 rounded-full backdrop-blur-sm animate-scale-in">
-            <Building2 className="w-20 h-20 text-white animate-bounce" />
+            <img 
+              src="/lovable-uploads/9aa70320-ef07-4995-aab4-4d903ac03bdc.png" 
+              alt="BRI Logo" 
+              className="w-20 h-20 animate-bounce"
+            />
           </div>
         </div>
         
