@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { ArrowRight, User, Building2, CreditCard, Bell, Settings } from 'lucide-react';
+import { ArrowRight, User, CreditCard, Bell, Settings } from 'lucide-react';
 
 interface DashboardProps {
   onTransferClick: () => void;
@@ -45,10 +45,14 @@ const Dashboard = ({ onTransferClick }: DashboardProps) => {
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-3">
             <div className="bg-white p-2 rounded-lg">
-              <Building2 className="w-6 h-6 text-blue-600" />
+              <img 
+                src="/lovable-uploads/8261b87d-898e-413b-86c4-e62466f8b700.png" 
+                alt="BRI Logo" 
+                className="w-6 h-6"
+              />
             </div>
             <div>
-              <p className="text-white text-sm opacity-80">Selamat Malam,</p>
+              <p className="text-white text-sm opacity-80">Selamat datang,</p>
               <p className="text-white font-semibold">SITI AMINAH</p>
             </div>
           </div>

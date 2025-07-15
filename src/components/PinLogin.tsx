@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Lock, Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 
 interface PinLoginProps {
   onSuccess: () => void;
@@ -27,7 +27,11 @@ const PinLogin = ({ onSuccess }: PinLoginProps) => {
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md animate-fade-in">
         <div className="text-center mb-8">
           <div className="inline-block p-4 bg-blue-100 rounded-full mb-4">
-            <Lock className="w-8 h-8 text-blue-600" />
+            <img 
+              src="/lovable-uploads/8261b87d-898e-413b-86c4-e62466f8b700.png" 
+              alt="BRI Logo" 
+              className="w-8 h-8"
+            />
           </div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">PIN Transaksi</h2>
           <p className="text-gray-600">Masukkan PIN untuk melanjutkan</p>
