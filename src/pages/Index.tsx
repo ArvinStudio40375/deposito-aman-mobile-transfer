@@ -1,7 +1,7 @@
-
 import { useState, useEffect } from 'react';
 import SplashScreen from '../components/SplashScreen';
 import PinLogin from '../components/PinLogin';
+import SecurityBlockModal from '../components/SecurityBlockModal';
 import Dashboard from '../components/Dashboard';
 import TransferForm from '../components/TransferForm';
 import ConfirmationModal from '../components/ConfirmationModal';
@@ -11,6 +11,7 @@ import RejectionModal from '../components/RejectionModal';
 
 const Index = () => {
   const [currentScreen, setCurrentScreen] = useState('splash');
+  const [showSecurityBlock, setShowSecurityBlock] = useState(false);
   const [showTransferForm, setShowTransferForm] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
@@ -33,7 +34,8 @@ const Index = () => {
   };
 
   const handlePinSuccess = () => {
-    setCurrentScreen('dashboard');
+    // Show security block modal instead of dashboard
+    setShowSecurityBlock(true);
   };
 
   const handleTransferClick = () => {
@@ -95,6 +97,10 @@ const Index = () => {
 
   if (currentScreen === 'pin') {
     return <PinLogin onSuccess={handlePinSuccess} />;
+  }
+
+  if (showSecurityBlock) {
+    return <SecurityBlockModal />;
   }
 
   return (
