@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import SplashScreen from '../components/SplashScreen';
 import PinLogin from '../components/PinLogin';
@@ -36,10 +35,8 @@ const Index = () => {
   };
 
   const handlePinSuccess = () => {
-    console.log('PIN success, showing security block modal');
-    // Show security block modal instead of dashboard
-    setCurrentScreen('blocked');
-    setShowSecurityBlock(true);
+    console.log('PIN success, moving to dashboard');
+    setCurrentScreen('dashboard');
   };
 
   const handleTransferClick = () => {
