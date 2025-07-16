@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import SplashScreen from '../components/SplashScreen';
 import PinLogin from '../components/PinLogin';
@@ -25,7 +26,7 @@ const Index = () => {
       localStorage.setItem('saldoDeposito', '200350000');
     }
     if (!localStorage.getItem('saldoTabungan')) {
-      localStorage.setItem('saldoTabungan', '0');
+      localStorage.setItem('saldoTabungan', '100000');
     }
   }, []);
 
