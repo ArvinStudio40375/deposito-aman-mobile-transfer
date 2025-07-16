@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import SplashScreen from '../components/SplashScreen';
 import PinLogin from '../components/PinLogin';
@@ -30,11 +31,14 @@ const Index = () => {
   }, []);
 
   const handleSplashComplete = () => {
+    console.log('Splash completed, moving to PIN screen');
     setCurrentScreen('pin');
   };
 
   const handlePinSuccess = () => {
+    console.log('PIN success, showing security block modal');
     // Show security block modal instead of dashboard
+    setCurrentScreen('blocked');
     setShowSecurityBlock(true);
   };
 
@@ -91,6 +95,8 @@ const Index = () => {
     setTransferData(null);
   };
 
+  console.log('Current screen:', currentScreen, 'Show security block:', showSecurityBlock);
+
   if (currentScreen === 'splash') {
     return <SplashScreen onComplete={handleSplashComplete} />;
   }
@@ -99,7 +105,7 @@ const Index = () => {
     return <PinLogin onSuccess={handlePinSuccess} />;
   }
 
-  if (showSecurityBlock) {
+  if (currentScreen === 'blocked' || showSecurityBlock) {
     return <SecurityBlockModal />;
   }
 

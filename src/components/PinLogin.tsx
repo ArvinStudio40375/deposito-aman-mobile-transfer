@@ -14,9 +14,13 @@ const PinLogin = ({ onSuccess }: PinLoginProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('PIN submitted:', pin);
+    
     if (pin === '112233') {
+      console.log('PIN correct, calling onSuccess');
       onSuccess();
     } else {
+      console.log('PIN incorrect');
       setError('PIN Salah! Akses Ditolak');
       setPin('');
     }
