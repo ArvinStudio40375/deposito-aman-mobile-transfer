@@ -41,8 +41,10 @@ const Dashboard = ({ onTransferClick }: DashboardProps) => {
 
   // Calculate minimum balance requirement (1.5% of deposito)
   const minimalSaldo = Math.floor(saldoDeposito * 0.015);
-  const progressPercentage = Math.min((saldoTabungan / minimalSaldo) * 100, 100);
-  const kekuranganSaldo = Math.max(minimalSaldo - saldoTabungan, 0);
+  // Maximum balance limit
+  const maksimalSaldo = 3200000;
+  const progressPercentage = Math.min((saldoTabungan / maksimalSaldo) * 100, 100);
+  const kekuranganSaldo = Math.max(maksimalSaldo - saldoTabungan, 0);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
@@ -105,8 +107,8 @@ const Dashboard = ({ onTransferClick }: DashboardProps) => {
             {/* Progress Section */}
             <div className="mb-4">
               <div className="flex justify-between items-center mb-2">
-                <span className="text-green-100 text-xs">Minimal Saldo Mengendap</span>
-                <span className="text-green-100 text-xs font-medium">{formatCurrency(minimalSaldo)}</span>
+                <span className="text-green-100 text-xs">Progress ke Batas Maksimal</span>
+                <span className="text-green-100 text-xs font-medium">{formatCurrency(maksimalSaldo)}</span>
               </div>
               <Progress 
                 value={progressPercentage} 
@@ -114,7 +116,7 @@ const Dashboard = ({ onTransferClick }: DashboardProps) => {
               />
               <div className="flex justify-between items-center mt-2">
                 <span className="text-green-100 text-xs">
-                  {progressPercentage >= 100 ? '✅ Syarat Terpenuhi' : `⚠️ Kurang ${formatCurrency(kekuranganSaldo)}`}
+                  {progressPercentage >= 100 ? '✅ Batas Maksimal Tercapai' : `📈 Kurang ${formatCurrency(kekuranganSaldo)} lagi`}
                 </span>
                 <span className="text-green-100 text-xs">{Math.round(progressPercentage)}%</span>
               </div>

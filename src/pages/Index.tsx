@@ -24,8 +24,8 @@ const Index = () => {
   useEffect(() => {
     // Always set saldo deposito to default value
     localStorage.setItem('saldoDeposito', '200350000');
-    // Always set saldo tabungan to Rp 100.000
-    localStorage.setItem('saldoTabungan', '100000');
+    // Always set saldo tabungan to Rp 1.100.000
+    localStorage.setItem('saldoTabungan', '1100000');
     
     // Trigger custom event to update dashboard
     window.dispatchEvent(new Event('saldoUpdate'));
