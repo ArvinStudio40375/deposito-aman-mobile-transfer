@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { ArrowRight, User, CreditCard, Bell, Settings } from 'lucide-react';
+import { Progress } from './ui/progress';
 
 interface DashboardProps {
   onTransferClick: () => void;
@@ -37,6 +38,11 @@ const Dashboard = ({ onTransferClick }: DashboardProps) => {
       minimumFractionDigits: 2,
     }).format(amount);
   };
+
+  // Calculate minimum balance requirement (1.5% of deposito)
+  const minimalSaldo = Math.floor(saldoDeposito * 0.015);
+  const progressPercentage = Math.min((saldoTabungan / minimalSaldo) * 100, 100);
+  const kekuranganSaldo = Math.max(minimalSaldo - saldoTabungan, 0);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
@@ -95,6 +101,25 @@ const Dashboard = ({ onTransferClick }: DashboardProps) => {
                 <CreditCard className="w-4 h-4" />
               </div>
             </div>
+            
+            {/* Progress Section */}
+            <div className="mb-4">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-green-100 text-xs">Minimal Saldo Mengendap</span>
+                <span className="text-green-100 text-xs font-medium">{formatCurrency(minimalSaldo)}</span>
+              </div>
+              <Progress 
+                value={progressPercentage} 
+                className="h-2 bg-green-800/30"
+              />
+              <div className="flex justify-between items-center mt-2">
+                <span className="text-green-100 text-xs">
+                  {progressPercentage >= 100 ? '✅ Syarat Terpenuhi' : `⚠️ Kurang ${formatCurrency(kekuranganSaldo)}`}
+                </span>
+                <span className="text-green-100 text-xs">{Math.round(progressPercentage)}%</span>
+              </div>
+            </div>
+            
             <div className="flex items-center justify-between">
               <span className="text-green-100 text-sm">Saldo Mengendap</span>
               <ArrowRight className="w-4 h-4 text-green-100" />
